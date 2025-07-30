@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckWeather</title>
+    <link rel="stylesheet" href="static/css/style.css">
+
+</head>
+<body>
+
+    <form action="" method="post" class="ask-ville">
+            
+            <div class="container-champ">
+                <label for="ville">Rechercher une ville</label>
+                <input type="text" name="ville" id="ville">
+            </div>
+
+            <button type="button" id="ask-ville-submit">Voir la météo</button>
+    </form>
+
+    <div class="loader">
+        <span>Chargement de la météo...</span>
+        <span class="spin-span"></span>
+    </div>
+
+    <div class="main-wrapper">
+
+
+        
+        <div class="container">
+            <div class="buttons-move">
+                <a href="#" id="retour">Retour</a>
+                <a href="#" id="avance">Avancée</a>
+            </div>
+            
+            <div class="show-weather">
+
+
+                <!--Affichage des informations météorologiques pertinentes :
+                température, icône météorologique représentative, et description textuelle des conditions.-->
+                <div class="infos-meteo">
+
+                    <!--température, icône météorologique représentative-->
+                    <div class="temperature-icone-ville">
+                        <!--Ville-->
+                        <p class="ville"></p>
+                        <div class="temperature-icone">
+                            <p class="icone">💭</p>
+                            <p class="temperature">24</p>
+                        </div>
+                    
+                    </div>
+
+                    <!--description textuelle des conditions-->
+
+                    <p class="description-meteo">Nuageux</p>
+
+                        <!--Ajouter une note-->
+                    <div class="add-note">
+                        <!--Une icone de crayon a cote-->
+                        <button type="button" id="btn-add-note">Ajouter une note</button>
+                        <form action="" class="add-note-form">
+                            <div class="container-champ-textarea">
+                                <label for="note-texte">Ta note</label>
+                                <textarea name="note-texte" id="note-texte"></textarea>
+                            </div>
+                            <button type="submit" id="submit-note">OK</button>
+                        </form>
+                        <div class="container-paragraphe-not">
+                            <p class="paragraphe-note-texte"></p>
+                            <!--Un truc comme menu déroulant et quand on clique xa affiche modifier et supprimer-->
+                        </div>
+
+                    </div>
+                </div>
+
+                
+
+                <!--Les jours en bas-->
+                <div class="days">
+                    <div class="heure-par-heur">
+                        <p>Heure par heure</p>
+                    </div>
+                    <form action="" >
+                        <label for="lundi">Lun <input type="radio" name="day" id="lundi"></label> 
+                        <label for="mardi">Mar <input type="radio" name="day" id="mardi"></label> 
+                        <label for="mercredi">Mer <input type="radio" name="day" id="mercredi"></label> 
+                        <label for="jeudi">Jeu <input type="radio" name="day" id="jeudi"></label> 
+                        <label for="vendredi">Ven <input type="radio" name="day" id="vendredi"></label> 
+                        <label for="samedi">Sam <input type="radio" name="day" id="samedi"></label> 
+                        <label for="dimanche">Dim <input type="radio" name="day" id="dimanche"></label> 
+                    </form>
+                </div>
+
+            </div>
+
+            
+        </div>
+        
+        <div class="historique">
+            
+            <p>Ville</p>
+            <p>24 💭</p>
+            <p>Note de l'utilisateur</p>
+            <p>La date </p> <!--Tout en bas -->
+        </div>
+    </div>
+
+ 
+<script src="static/js/main.js"></script>
+</body>
+</html>
