@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckWeather</title>
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
 
 </head>
 <body>
@@ -12,16 +14,22 @@
     <form action="" method="post" class="ask-ville">
             
             <div class="container-champ">
-                <label for="ville">Rechercher une ville</label>
+                <label for="ville" >Rechercher une ville</label>
                 <input type="text" name="ville" id="ville">
             </div>
 
-            <button type="button" id="ask-ville-submit">Voir la météo</button>
+            <button type="submit" id="ask-ville-submit">Voir la météo</button>
     </form>
 
     <div class="loader">
         <span>Chargement de la météo...</span>
         <span class="spin-span"></span>
+    </div>
+
+    <div class="loader-error">
+        <span class="span-error">Erreur...</span>
+        <span class="span-city-notfound">Nous n'avons pas trouvé votre ville </span>
+        <button class="retry">Réessayer</button>
     </div>
 
     <div class="main-wrapper">
@@ -46,15 +54,20 @@
                         <!--Ville-->
                         <p class="ville"></p>
                         <div class="temperature-icone">
-                            <p class="icone">💭</p>
-                            <p class="temperature">24</p>
+                            <p class="temperature"></p>
+                            <img class="icone">
                         </div>
                     
                     </div>
 
                     <!--description textuelle des conditions-->
-
-                    <p class="description-meteo">Nuageux</p>
+                    <div>
+                        <p class="description"></p>
+                        <div class="min-max-temperature">
+                            <p class="min-temperature"></p>
+                            <p class="max-temperature"></p>
+                        </div>
+                    </div>
 
                         <!--Ajouter une note-->
                     <div class="add-note">
