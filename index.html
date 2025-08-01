@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckWeather</title>
     <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
 
 </head>
 <body>
@@ -38,8 +36,7 @@
         
         <div class="container">
             <div class="buttons-move">
-                <a href="#" id="retour">Retour</a>
-                <a href="#" id="avance">Avancée</a>
+                <btn id="btn-historique">Historique</btn>
             </div>
             
             <div class="show-weather">
@@ -78,11 +75,23 @@
                                 <label for="note-texte">Ta note</label>
                                 <textarea name="note-texte" id="note-texte"></textarea>
                             </div>
-                            <button type="submit" id="submit-note">OK</button>
+                            <button type="submit" id="submit-note"><ion-icon name="checkmark-outline"></ion-icon></button>
                         </form>
-                        <div class="container-paragraphe-not">
-                            <p class="paragraphe-note-texte"></p>
-                            <!--Un truc comme menu déroulant et quand on clique xa affiche modifier et supprimer-->
+                        <div class="container-paragraphe-note">
+                            <div class="note-chevron">
+                                <div class="note-box">
+                                    <p class="paragraphe-note-texte"></p>
+                                    <div class="note-date"></div>
+                                </div>
+                                <ion-icon name="chevron-down-outline" class="dropdown"></ion-icon>
+                            </div>
+
+                            
+                            <div class="options-box">
+                                <ion-icon name="pencil-outline" aria-label="Modifier" class="btn-modifiy"></ion-icon>
+                                <ion-icon name="trash-outline" aria-label="Supprimer" class="btn-delete"></ion-icon>
+
+                            </div>
                         </div>
 
                     </div>
@@ -90,37 +99,24 @@
 
                 
 
-                <!--Les jours en bas-->
-                <div class="days">
-                    <div class="heure-par-heur">
-                        <p>Heure par heure</p>
-                    </div>
-                    <form action="" >
-                        <label for="lundi">Lun <input type="radio" name="day" id="lundi"></label> 
-                        <label for="mardi">Mar <input type="radio" name="day" id="mardi"></label> 
-                        <label for="mercredi">Mer <input type="radio" name="day" id="mercredi"></label> 
-                        <label for="jeudi">Jeu <input type="radio" name="day" id="jeudi"></label> 
-                        <label for="vendredi">Ven <input type="radio" name="day" id="vendredi"></label> 
-                        <label for="samedi">Sam <input type="radio" name="day" id="samedi"></label> 
-                        <label for="dimanche">Dim <input type="radio" name="day" id="dimanche"></label> 
-                    </form>
-                </div>
+               <div class="historique-container">
+        
+            </div>
 
             </div>
 
             
         </div>
         
-        <div class="historique">
-            
-            <p>Ville</p>
-            <p>24 💭</p>
-            <p>Note de l'utilisateur</p>
-            <p>La date </p> <!--Tout en bas -->
-        </div>
+        
     </div>
 
  
 <script src="static/js/main.js"></script>
+
+<!--Bibliotheque ionicone-->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
