@@ -8,8 +8,7 @@
 
 </head>
 <body>
-
-    <form action="" method="post" class="ask-ville">
+    <form action="" method="get" class="ask-ville">
             
             <div class="container-champ">
                 <label for="ville" >Rechercher une ville</label>
@@ -36,7 +35,8 @@
         
         <div class="container">
             <div class="buttons-move">
-                <btn id="btn-historique">Historique</btn>
+                <button class="search-ville">Rechercher une autre ville <ion-icon name="search-outline"></ion-icon></button>
+                <button id="btn-historique">Historique de vos notes</button>
             </div>
             
             <div class="show-weather">
@@ -71,6 +71,7 @@
                         <!--Une icone de crayon a cote-->
                         <button type="button" id="btn-add-note">Ajouter une note</button>
                         <form action="" class="add-note-form">
+                            <ion-icon name="close-outline" class="annuler-form"></ion-icon>
                             <div class="container-champ-textarea">
                                 <label for="note-texte">Ta note</label>
                                 <textarea name="note-texte" id="note-texte"></textarea>
@@ -98,10 +99,19 @@
                 </div>
 
                 
+                <div class="historique-and-close" >
+                    <ion-icon name="close-outline" class="close-btn"></ion-icon>
+                    <div class="historique-container">
+                    </div>
+                    <div class="btn-delete-historique">
+                        <p>Vider l'historique
+                        <ion-icon name="trash-outline" aria-label="Supprimer" class=""></ion-icon>
 
-               <div class="historique-container">
-        
-            </div>
+                        </p>
+                    </div>
+
+                </div>
+               
 
             </div>
 
@@ -112,7 +122,7 @@
     </div>
 
  
-<script src="static/js/main.js"></script>
+<script type="module" src="static/js/main.js"></script>
 
 <!--Bibliotheque ionicone-->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

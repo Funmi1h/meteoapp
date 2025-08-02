@@ -148,42 +148,34 @@ label{
     flex-direction: column;
 }
 .infos-meteo{
+    font-size: 20px;
     gap: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.days{
 
-    margin-top: 2em;
-    padding: 3em;
-    display: none;
-    flex-direction:column;
-    align-items: center;
-    background: linear-gradient(45deg, #d3c3fc, #9ac5fc);
-    box-shadow: 1px 12px 7px  #7190f5;
-    border-radius: 20px;
-    }
 
 .temperature-icone-ville{
-    font-size: 2em;
     display: flex;
     flex-direction: column;
     margin: auto;
+    justify-content: center;
 }
 
 .temperature-icone{
+    font-size: 1.5em;
     display: flex;
     flex-direction: row;
-    font-size: 3em;
 }
 .description{
     margin: auto;
     text-align: center;
     font-size: larger;
-    font-size: 1em;
 }
-
+.temperature{
+    margin: auto;
+}
 .add-note{
     display: flex;
     flex-direction: column;
@@ -198,12 +190,15 @@ label{
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
-    gap: 12px;
-
+    gap: 10px;
+    position: relative;
 }
 
 @media screen and (min-width:768px) {
 
+    .temperature-icone-ville{
+        margin-top: 2em;
+    }
    .buttons-move{
     margin-top: 0;
    }
@@ -230,17 +225,36 @@ label{
         padding: 0 0 2em 0;
     }
  
-
+    .historique-and-close{
+        display: block !important;
+    }
     .historique-container{
         display: flex !important;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
+        border: 1px solid white;
+        position: absolute;
+        height: 70vh !important;
+        top: 20px;
+        right: 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 40%;
+    
+    }
+    .close-btn{
+        display: none !important;
+    }
+
+    .btn-close{
+        display: none !important;
     }
 
     #btn-historique{
-        display: none;
+        max-width: 20%;
+        margin-right: 50px;
     }
+
 }
 
 #btn-add-note{
@@ -255,22 +269,24 @@ label{
 
 .buttons-move{
     position: relative;
-    margin-top: 2em;
+    margin-top: 12px;
 }
 
 
 #btn-historique{
     text-align: center;
     position: absolute;
-    right:50px ;
-    width: 20%;
-    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);    border: none;
+    right:0px ;
+    width: 30%;
+    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
+    border: none;
     color: white;
     padding: 0.5em;
-    font-size: 20px;
+    font-size: 16px;
     cursor:pointer;
     box-shadow: 1px 1px 4px rgb(201, 199, 199);
     border-radius: 8px;
+    display: block !important;
 
 }
 
@@ -282,8 +298,7 @@ label{
     flex-direction: row;
     align-items: center;
     justify-items: center;
-    margin: 0.5em;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', cursive !important;
     height: auto;
 }
 
@@ -322,6 +337,10 @@ label{
 }
 /* Le show c'est la classe a toogle en js*/
 .options-box{
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
+    padding: 10px;
+    border-radius: 8px;
     display: none;
     max-height: 0;
     transition: max-height 0.3s ease;   
@@ -362,7 +381,65 @@ label{
 .historique-container{
     display: none;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 12px;
     margin-left: 1em;
+    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
+    border: none;
+    position: absolute;
+    height: auto;
+    top: 5em;
+    right: 0px;
+    width: 50%;
+    box-shadow: 12px 10px 4px rgb(90, 122, 165);
+    border-radius: 8px;
+    border: 1px solid white;
+    
+}
+.close-btn{
+    top: 4em;
+    right: 0;
+    position: absolute;
+    margin-right: 2px;
+}
+
+.historique-and-close{
+    display: none ;
+}
+
+.btn-delete-historique{
+    bottom: 2px;
+    right: 0;
+    position: absolute;
+    margin-right:2px;
+}
+.historique-card{
+    background-color: azure;
+}
+
+.annuler-form{
+    font-size: 2em;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+.search-ville{
+    text-align: center;
+    position: absolute;
+    left:0px ;
+    width: 30%;
+    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
+    border: none;
+    color: white;
+    padding: 0.5em;
+    font-size: 16px;
+    cursor:pointer;
+    box-shadow: 1px 1px 4px rgb(201, 199, 199);
+    border-radius: 8px;
+    display: block !important;
+
+}
+.buttons-move{
+    margin-bottom: 0.5em;
+
 }

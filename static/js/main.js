@@ -16,14 +16,23 @@ let btnAddNote = document.getElementById('btn-add-note');
 let formAddNote = document.querySelector('.add-note-form');
 let noteTexte  = document.querySelector('.paragraphe-note-texte');
 let containerNote = document.querySelector('.container-paragraphe-note')
-
+let btnDeleteHistorique = document.querySelector('.btn-delete-historique');
+let annulerFormAddNote = document.querySelector('.annuler-form')
 let btnRetry = document.querySelector('.retry');
-let errorLoader = document.querySelector('.loader-error')
+let errorLoader = document.querySelector('.loader-error');
+let btnSearchCity = document.querySelector('.search-ville');
+
 // Variables liées a l'utilisation de l'api
 let basicUrl = 'https://api.openweathermap.org/data/2.5/weather';
-let apiKey = "6ed894d9cf622e893a90258dafb5819b";
+let apiKey = "1817c79769bea04e53e3dad66b4c66e9";
 let researchOptions = "&units=metric&lang=fr";
 
+
+
+btnSearchCity.addEventListener('click', ()=>{
+    askVille.style.display = 'flex';
+
+})
 
 // Affichage du loader  et du mainWrapper
     /* Fonctionne bien pas touche */
@@ -48,6 +57,12 @@ function loadingError(){
 }
 
 
+if (noteTexte.textContent === false){
+    btnAddNote.style.display = 'none';
+    containerNote.style.display = 'flex';
+}
+
+
 
 // Xa fonctionne
 function setUpForm(form){
@@ -62,7 +77,7 @@ function capitalizeFirstLetter(text){
    return text[0].toUpperCase() + text.slice(1)    
 }
 
-
+let nameVille;
 async function getWeather(form) {  
     let formData = new FormData(form);  
     let cityName = formData.get('ville'); // Récupérer le nom de la ville 
@@ -82,7 +97,7 @@ async function getWeather(form) {
     }
     loading();
     let data = await response.json();
-    let nameVille = data.name;
+    nameVille = data.name;
     let descriptionData = data.weather[0].description
     let iconData = data.weather[0].icon
     let temperatureData = Math.floor(data.main.temp);
@@ -99,34 +114,9 @@ async function getWeather(form) {
         maxTemperature.textContent = `↑ ${maxTemperatureData}°`;
     }
 
-
-    // Afficher la note si elle existe déja 
-    afficherNoteSiExistante(nameVille, getDate())
-
-
+    loadNoteDuJour(nameVille);
 }
-
-function afficherNoteSiExistante(ville, date) {
-    let historique = JSON.parse(localStorage.getItem("historique")) || [];
-    let entry = historique.find(e => e.ville === ville && e.date === date);
-
-    if (entry) {
-        noteTexte.textContent = entry.note;
-        document.querySelector('.note-date').textContent = entry.date;
-        containerNote.style.display = 'flex';
-        btnAddNote.style.display = 'none';
-    } else {
-        noteTexte.textContent = "";
-        containerNote.style.display = 'none';
-        btnAddNote.style.display = 'block';
-    }
-}
-
-
 setUpForm(askVille);
-
-
-
 
 // Ajouter une note c'est bon n'y touche plus
 function addNote(form){
@@ -169,22 +159,53 @@ function addNote(form){
             date: getDate() 
         };
 
-        let dateSansHeure = getDate().split(" à")[0]; // exemple : "01/08/2025"
+        let dateSansHeure = getDate().split("à")[0]; 
 
         // Supprimer les anciennes entrées du jour pour une mm ville
         historique = historique.filter(entry =>{
-            let entryDateSansHeure = entry.date.split(" à")[0]
+            let entryDateSansHeure = entry.date.split("à")[0]
             return !(entry.ville === nameVille && entryDateSansHeure === dateSansHeure)
     });
     // ajouter la nouvelle entrée
     historique.push(historiqueEntry);
 
     localStorage.setItem("historique", JSON.stringify(historique)); // Mise a jour du localStorage  
+    showHistorique()
     })
 
 }
 btnAddNote.addEventListener('click', () =>addNote(formAddNote))
 
+annulerFormAddNote.addEventListener('click', ()=>{
+    formAddNote.style.display = 'none';
+    btnAddNote.style.display = 'flex';
+    loadNoteDuJour(nameVille)
+})
+
+
+
+function loadNoteDuJour(villeRecherchee){
+    let historique = JSON.parse(localStorage.getItem("historique"));
+    let dateSansHeure = getDate().split("à")[0];
+    let noteDuJour = historique.find(entry =>{
+    let entryDataSansHeure = entry.date.split("à")[0];
+    return entry.ville === villeRecherchee && entryDataSansHeure ===dateSansHeure
+});
+ if (noteDuJour) {
+    let noteArea = document.getElementById('note-texte')
+    noteArea.value = noteDuJour.note;
+    noteTexte.textContent = noteDuJour.note;
+    containerNote.style.display = 'flex';
+    formAddNote.style.display = 'none';
+    btnAddNote.style.display = 'none';
+    document.querySelector('.note-date').textContent = noteDuJour.date;
+    } else {
+    // On a pas trouver d'entrée 
+    noteTexte.textContent = "";
+    containerNote.style.display = 'none';
+    btnAddNote.style.display = 'block';
+    }
+}
 function getDate(){
     let now = new Date();
     let day = String(now.getDate()).padStart(2, "0");
@@ -200,7 +221,7 @@ let historiqueContainer = document.querySelector('.historique-container');
 
 function showHistorique(){
     let historique = JSON.parse(localStorage.getItem("historique")) || [];
-    historiqueContainer.innerHTML = "";
+    historiqueContainer.innerHTML ="";
     historique.forEach(entry =>{
         let card = document.createElement('div');
         card.classList.add('historique-carte');
@@ -212,12 +233,32 @@ function showHistorique(){
         <p class="date">${entry.date}</p>
         `;
         historiqueContainer.appendChild(card);
+
     });
+    showBtnDeleteHistorique()
 }
-window.addEventListener('load', showHistorique);
-document.getElementById('btn-historique').addEventListener('click', ()=> {
+
+
+showHistorique()
+let btnHistorique = document.getElementById('btn-historique');
+let closeBtn = document.querySelector('.close-btn');
+
+// event au click sur le btn historique
+btnHistorique.addEventListener('click', ()=> {
+    document.querySelector('.historique-and-close').style.display= 'block';
     historiqueContainer.style.display = 'flex';
+    // Affichage du boutton pour fermer
 })
+closeBtn.addEventListener('click', ()=>{
+    document.querySelector('.historique-and-close').style.display = 'none';
+} )
+
+
+
+
+
+
+
 // Pour supprimer la note c'est bon on n'y touche plus
 function deleteNote(){
     let textarea  = document.querySelector('[name="note-texte"]');
@@ -230,11 +271,11 @@ document.querySelector('.btn-delete').addEventListener('click', ()=> deleteNote(
 
 // Pour modifier la note c'est bon n'y touche plus
 function modifyNote(){
-    document.querySelector('.container-paragraphe-note').style.display = "none"
-    formAddNote.style.display = 'flex'
-    addNote(form)
+    document.querySelector('.container-paragraphe-note').style.display = "none";
+    formAddNote.style.display = 'flex';
+    addNote(formAddNote);
 }
-document.querySelector('.btn-modifiy').addEventListener('click', ()=>modifyNote())
+document.querySelector('.btn-modifiy').addEventListener('click', ()=>modifyNote());
 
 //Pour afficher plusd'options. N'y touche plus
 let moreOptionsBtn =document.querySelector('.dropdown');
@@ -242,4 +283,32 @@ moreOptionsBtn.addEventListener('click', ()=>{
     document.querySelector('.options-box').classList.toggle('show');
     moreOptionsBtn.classList.toggle('turn');
 });
+
+//Supprimer l'historique
+btnDeleteHistorique.addEventListener('click', ()=>{
+
+    historiqueContainer.innerHTML = "";
+    historiqueContainer.textContent = "L'historique est vide"
+    localStorage.removeItem("historique");
+    showBtnDeleteHistorique()
+})
+
+
+
+
+function showBtnDeleteHistorique(){
+    const estVide = historiqueContainer.textContent.trim() === "L'historique est vide" || historiqueContainer.textContent.trim() === ""
+
+if (estVide){
+    btnDeleteHistorique.style.display = 'none';
+}else{
+    btnDeleteHistorique.style.display = 'block'
+}
+
+if (historiqueContainer.innerHTML === ""){
+    historiqueContainer.textContent = "L'historique est vide";
+    document.querySelector('.btn-delete-historique').style.display ='none'
+    
+}
+}
 
