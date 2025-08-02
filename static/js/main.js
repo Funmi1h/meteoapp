@@ -233,12 +233,31 @@ function showHistorique(){
         <p class="note">${entry.note}</p>
         <p class="date">${entry.date}</p>
         `;
+        
+        let btnDeleteCard = document.createElement('ion-icon');
+        btnDeleteCard.setAttribute("name", "trash-outline");
+        btnDeleteCard.classList.add('btn-delete-card')
+        card.appendChild(btnDeleteCard);
         historiqueContainer.appendChild(card);
+           btnDeleteCard.addEventListener('click', ()=>{
+    deleteNoteFromHistorique(entry.ville, entry.date.split("à")[0]);
+})
 
     });
-    showBtnDeleteHistorique()
+    showBtnDeleteHistorique();
+
+ 
 }
 
+
+function deleteNoteFromHistorique(villeAsupprimer, dateASupprimer){
+    console.log('Supprimer la carte')
+    let historique = JSON.parse(localStorage.getItem('historique')) || [];
+    historique = historique.filter( entry =>
+      !(entry.ville === villeAsupprimer && entry.date.split("à")[0]=== dateASupprimer));
+      localStorage.setItem('historique', JSON.stringify(historique));
+      showHistorique()
+}
 
 showHistorique()
 let btnHistorique = document.getElementById('btn-historique');

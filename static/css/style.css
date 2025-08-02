@@ -231,19 +231,21 @@ label{
     .historique-container{
         display: flex !important;
         flex-direction: column;
-        background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
         border: 1px solid white;
         position: absolute;
         height: 70vh !important;
-        top: 20px;
-        right: 0px;
+        top: 10em;
+        right: 3px;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 40%;
     
     }
     .close-btn{
-        display: none !important;
+        font-size: 3em;
+        display: none;
+ 
+        
     }
 
     .btn-close{
@@ -383,11 +385,10 @@ label{
     flex-direction: column;
     padding: 12px;
     margin-left: 1em;
-    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
     border: none;
     position: absolute;
     height: auto;
-    top: 5em;
+    top: 9em;
     right: 0px;
     width: 50%;
     box-shadow: 12px 10px 4px rgb(90, 122, 165);
@@ -396,7 +397,9 @@ label{
     
 }
 .close-btn{
-    top: 4em;
+    font-weight: bolder;
+    font-size: 2em;
+    top: 3em;
     right: 0;
     position: absolute;
     margin-right: 2px;
@@ -412,8 +415,14 @@ label{
     position: absolute;
     margin-right:2px;
 }
-.historique-card{
-    background-color: azure;
+.historique-carte{
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border:  1px solid #ccc;
+    background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
+    border-radius: 8px;
+    padding: 12px;
+
+
 }
 
 .annuler-form{
@@ -443,3 +452,11 @@ label{
     margin-bottom: 0.5em;
 
 }
+
+
+.btn-delete-card{
+   width: 10%;
+   margin-right: 0;
+   margin-left: 90%;
+}
+
