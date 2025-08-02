@@ -31,6 +31,7 @@ let researchOptions = "&units=metric&lang=fr";
 
 btnSearchCity.addEventListener('click', ()=>{
     askVille.style.display = 'flex';
+    document.querySelector('.main-wrapper').style.display = 'none'
 
 })
 
