@@ -3,11 +3,10 @@ import * as storageConfig from './storage.js'
 // Variables liées a l'utilisation de l'api
 
  let basicUrl=   'https://api.openweathermap.org/data/2.5/weather';
- let apiKey=  "1817c79769bea04e53e3dad66b4c66e9";
+ let apiKey=  "06e733cda551b27354299ab5d9e458fc";
  let researchOptions=  "&units=metric&lang=fr";
 
-
-let villeName = config.nameVille
+let villeName = "";
 
 async function getWeather(form) {  
     let formData = new FormData(form);  
@@ -29,6 +28,13 @@ async function getWeather(form) {
     config.loading();
     let data = await response.json();
     villeName = data.name;
+    // Récupérer le type de météo
+    let meteoType = data.weather[0].main.toLowerCase();
+    // Changer le background en fonction de la météo
+    let infosMeteoWrapper = document.querySelector('.infos-meteo');
+    infosMeteoWrapper.classList.remove("clear", "rain", "clouds", "snow", "thunderstorm");
+    infosMeteoWrapper.classList.add(meteoType);
+    
     let descriptionData = data.weather[0].description
     let iconData = data.weather[0].icon
     let temperatureData = Math.floor(data.main.temp);
@@ -45,7 +51,7 @@ async function getWeather(form) {
         config.maxTemperature.textContent = `↑ ${maxTemperatureData}°`;
     }
 
-    storageConfig.loadNoteDuJour(config.nameVille);
+    storageConfig.loadNoteDuJour(nameVille);
     let historiqueEntry = {
         ville: config.ville.textContent,
         temperature : config.temperature.textContent,
@@ -55,15 +61,17 @@ async function getWeather(form) {
         date: config.getDate() ,
        modify: false
             };
-    
-    historiqueEntry.push(historiqueEntry);
+    let historique = JSON.parse(localStorage.getItem('historique')) || [];
+    historique.push(historiqueEntry);
     localStorage.setItem('historique', JSON.stringify(historique));
     
 }
 
+
+//
 const apiConfig = {
     getWeather,
 }
 
 
-export default apiConfig
+export default apiConfig;

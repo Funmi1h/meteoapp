@@ -1,6 +1,6 @@
 // Déclaration des variables 
 
-import * as apiConfig from './api'
+import apiConfig from './api.js'
 
 export let loader = document.querySelector('.loader');
 export let askVille = document.querySelector('.ask-ville');
@@ -60,8 +60,9 @@ export function getDate(){
     let day = String(now.getDate()).padStart(2, "0");
     let month =String(now.getMonth() +1).padStart(2, "0");
     let year = now.getFullYear();
-    let hour = now.getHours()
-    return `${day}/${month}/${year} à ${hour}h`;
+    let hour = now.getHours();
+    let minutes = now.getMinutes()
+    return `${day}/${month}/${year} à ${hour}h: ${minutes}`;
 
 }
 
@@ -75,3 +76,12 @@ function setUpForm(form){
 };
 
 
+export function setTheme(){
+    let theme =  document.body.className;
+    localStorage.setItem('theme', theme) ;// Sauvegarder le theme dans le localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme.trim() === "dark"){
+        body.classList.add('dark-mode');
+    }
+
+}

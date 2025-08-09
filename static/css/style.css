@@ -226,7 +226,7 @@ label{
     }
  
     .historique-and-close{
-        display: block !important;
+        display: block;
     }
     .historique-container{
         display: flex !important;
@@ -239,12 +239,15 @@ label{
         overflow: hidden;
         text-overflow: ellipsis;
         width: 40%;
-    
     }
     .close-btn{
-        font-size: 3em;
-        display: none;
- 
+        display: block;
+        font-size: 3em; 
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        cursor: pointer;
+        z-index: 10;
         
     }
 
@@ -387,13 +390,14 @@ label{
     margin-left: 1em;
     border: none;
     position: absolute;
-    height: auto;
+    height: 70vh;
     top: 9em;
     right: 0px;
     width: 50%;
     box-shadow: 12px 10px 4px rgb(90, 122, 165);
     border-radius: 8px;
     border: 1px solid white;
+    overflow-y: auto;
     
 }
 .close-btn{
@@ -406,6 +410,7 @@ label{
 }
 
 .historique-and-close{
+
     display: none ;
 }
 
@@ -421,6 +426,7 @@ label{
     background: linear-gradient(35deg, #d3c3fc, #9ac5fc);
     border-radius: 8px;
     padding: 12px;
+    margin-bottom: 1em;
 
 
 }
@@ -460,3 +466,25 @@ label{
    margin-left: 90%;
 }
 
+
+
+
+body.clear {
+    background: linear-gradient(to bottom, #56ccf2, #2f80ed); /* ciel bleu clair */
+}
+
+body.rain {
+    background: linear-gradient(to bottom, #4e6ca1, #283e51); /* gris/bleu pluie */
+}
+
+body.clouds {
+    background: linear-gradient(to bottom, #bdc3c7, #2c3e50); /* gris nuageux */
+}
+
+body.snow {
+    background: linear-gradient(to bottom, #e0eafc, #cfdef3); /* blanc neige */
+}
+
+body.thunderstorm {
+    background: linear-gradient(to bottom, #373b44, #4286f4); /* sombre orage */
+}

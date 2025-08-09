@@ -2,6 +2,12 @@ import * as config from './variables.js'
 import apiConfig  from './api.js';
 import  * as storageConfig from "./storage.js"
 
+
+document.addEventListener('DOMContentLoaded', () =>{
+    config.setTheme()
+
+})
+
 config.btnSearchCity.addEventListener('click', ()=>{
     config.askVille.style.display = 'flex';
     document.querySelector('.main-wrapper').style.display = 'none'
@@ -63,7 +69,7 @@ function addNote(form){
         // Supprimer les anciennes entrées du jour pour une mm ville
         historique = historique.filter(entry =>{
             let entryDateSansHeure = entry.date.split("à")[0]
-            return !(entry.ville === nameVille && entryDateSansHeure === dateSansHeure)
+            return !(entry.ville === config.nameVille && entryDateSansHeure === dateSansHeure)
     });
     // ajouter la nouvelle entrée
     historique.push(historiqueEntry);
@@ -80,16 +86,6 @@ config.annulerFormAddNote.addEventListener('click', ()=>{
     config.btnAddNote.style.display = 'flex';
     loadNoteDuJour(nameVille)
 })
-
-
-
-
-
-
-
-
-
-
 
 storageConfig.showHistorique()
 
