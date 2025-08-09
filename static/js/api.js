@@ -51,7 +51,7 @@ async function getWeather(form) {
         config.maxTemperature.textContent = `↑ ${maxTemperatureData}°`;
     }
 
-    storageConfig.loadNoteDuJour(nameVille);
+    storageConfig.loadNoteDuJour(config.nameVille);
     let historiqueEntry = {
         ville: config.ville.textContent,
         temperature : config.temperature.textContent,
