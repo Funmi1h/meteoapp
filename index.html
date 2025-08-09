@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheckWeather</title>
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/dark.css">
 
 </head>
 <body>
@@ -30,6 +31,8 @@
     </div>
 
     <div class="main-wrapper">
+        <button id="toggle-dark-mode">🌙 </button>
+
 
 
         
@@ -37,6 +40,7 @@
             <div class="buttons-move">
                 <button class="search-ville">Rechercher une autre ville <ion-icon name="search-outline"></ion-icon></button>
                 <button id="btn-historique">Historique de vos notes</button>
+
             </div>
             
             <div class="show-weather">
@@ -69,7 +73,7 @@
                         <!--Ajouter une note-->
                     <div class="add-note">
                         <!--Une icone de crayon a cote-->
-                        <button type="button" id="btn-add-note">Ajouter une note</button>
+                        <button type="button" id="btn-add-note">Ecrire une note</button>
                         <form action="" class="add-note-form">
                             <ion-icon name="close-outline" class="annuler-form"></ion-icon>
                             <div class="container-champ-textarea">
@@ -127,6 +131,6 @@
 <!--Bibliotheque ionicone-->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script defer src="static/js/main.js"></script>
+<script type="module" src="static/js/main.js"></script>
 </body>
 </html>
