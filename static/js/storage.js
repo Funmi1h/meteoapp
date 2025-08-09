@@ -62,7 +62,7 @@ function showBtnDeleteHistorique() {
 
 
 export function loadNoteDuJour(villeRecherchee){
-    let historique = JSON.parse(localStorage.getItem("historique"));
+    let historique = JSON.parse(localStorage.getItem("historique")) || [];
     let dateSansHeure = config.getDate().split("à")[0];
     let noteDuJour = historique.find(entry =>{
     let entryDataSansHeure = entry.date.split("à")[0];

@@ -133,8 +133,8 @@ config.moreOptionsBtn.addEventListener('click', ()=>{
 //Supprimer l'historique
 config.btnDeleteHistorique.addEventListener('click', ()=>{
 
-    historiqueContainer.innerHTML = "";
-    historiqueContainer.textContent = "L'historique est vide"
+    config.historiqueContainer.innerHTML = "";
+    config.historiqueContainer.textContent = "L'historique est vide"
     localStorage.removeItem("historique");
     storageConfig.showBtnDeleteHistorique()
 })

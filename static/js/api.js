@@ -64,6 +64,7 @@ async function getWeather(form) {
     let historique = JSON.parse(localStorage.getItem('historique')) || [];
     historique.push(historiqueEntry);
     localStorage.setItem('historique', JSON.stringify(historique));
+    storageConfig.showHistorique()
     
 }
 

@@ -271,7 +271,10 @@ label{
     
 }
 
-
+.infos-meteo{
+    margin-top: 3em;
+  padding: 3em;
+}
 .buttons-move{
     position: relative;
     margin-top: 12px;
@@ -469,22 +472,22 @@ label{
 
 
 
-body.clear {
+.infos-meteo.clear {
     background: linear-gradient(to bottom, #56ccf2, #2f80ed); /* ciel bleu clair */
 }
 
-body.rain {
+.infos-meteo.rain {
     background: linear-gradient(to bottom, #4e6ca1, #283e51); /* gris/bleu pluie */
 }
 
-body.clouds {
+.infos-meteo.clouds {
     background: linear-gradient(to bottom, #bdc3c7, #2c3e50); /* gris nuageux */
 }
 
-body.snow {
+.infos-meteo.snow {
     background: linear-gradient(to bottom, #e0eafc, #cfdef3); /* blanc neige */
 }
 
-body.thunderstorm {
+.infos-meteo.thunderstorm {
     background: linear-gradient(to bottom, #373b44, #4286f4); /* sombre orage */
 }
